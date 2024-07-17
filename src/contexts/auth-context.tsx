@@ -26,7 +26,6 @@ const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IUser | undefined>();
-  const [isLoadingUser, setIsLoadingUser] = useState(true);
 
   const token = Cookies.get("refreshToken");
 
@@ -36,7 +35,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         api.defaults.headers.common.Authorization = `Bearer ${token}`;
         await getUser();
       }
-      setIsLoadingUser(false);
     };
     loadUser();
   }, [token]);
