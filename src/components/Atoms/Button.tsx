@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 
 interface ButtonProps extends ComponentProps<"button"> {
-  variant?: string;
+  variant?: "primary" | "danger" | "neutral";
 }
 
 const Button = (props: ButtonProps) => {

@@ -9,7 +9,7 @@ const SearchItemForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const searchByName = searchParams.get("name");
-  const [name, setName] = useState(searchByName ? searchByName : "");
+  const [name, setName] = useState("");
 
   const debouncedName = useDebounce(name, 500);
 
@@ -31,7 +31,7 @@ const SearchItemForm = () => {
         type="text"
         defaultValue={searchByName ? searchByName : ""}
         placeholder="Digite aqui o nome do produto que precisa!"
-        onChange={(e) => setName((prev) => e.target.value)}
+        onChange={(e) => setName(() => e.target.value)}
       />
     </form>
   );

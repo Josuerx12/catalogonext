@@ -1,8 +1,8 @@
 import { L_ELLIPISIS, R_ELLIPISIS } from "@/constants/ellipisis";
 
 type Props = {
-  totalPages: number;
-  currentPage: number;
+  totalPages?: number;
+  currentPage?: number;
 };
 
 type FunctionReturn = {
@@ -41,8 +41,8 @@ const generatePages = (page: number, totalPages: number) => {
 };
 
 export const usePagination = ({
-  currentPage,
-  totalPages,
+  currentPage = 1,
+  totalPages = 1,
 }: Props): FunctionReturn => {
   const pages = generatePages(Number(currentPage), Number(totalPages));
   return {
