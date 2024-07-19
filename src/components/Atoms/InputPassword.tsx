@@ -2,9 +2,7 @@
 import { Eye, EyeOff } from "lucide-react";
 import React, { ComponentProps, useState } from "react";
 
-interface InputProps extends ComponentProps<"input"> {
-  label: string;
-}
+interface InputProps extends ComponentProps<"input"> {}
 
 const InputPassword = (props: InputProps) => {
   const [isShowing, setIsShowing] = useState(false);

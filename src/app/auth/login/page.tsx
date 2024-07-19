@@ -49,13 +49,7 @@ const LoginPage = () => {
         onSubmit={handleSubmit}
         className="flex flex-col gap-2 flex-1 mx-auto "
       >
-        <Input
-          placeholder="E-mail"
-          label="E-mail"
-          type="email"
-          required
-          name="email"
-        />
+        <Input placeholder="E-mail" type="email" required name="email" />
         {error?.email && (
           <p className="text-red-500">
             <span className="text-red-800 font-semibold">Error: </span>{" "}
@@ -63,7 +57,6 @@ const LoginPage = () => {
           </p>
         )}
         <InputPassword
-          label="Senha"
           placeholder="Informe sua senha."
           required
           name="password"
