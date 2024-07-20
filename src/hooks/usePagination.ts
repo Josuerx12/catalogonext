@@ -2,11 +2,11 @@ import { L_ELLIPISIS, R_ELLIPISIS } from "@/constants/ellipisis";
 
 type Props = {
   totalPages?: number;
-  currentPage?: number;
+  page?: number;
 };
 
 type FunctionReturn = {
-  currentPage: number;
+  isCurrentPage: (n: number) => boolean;
   avaiablePages: number[];
 };
 
@@ -41,12 +41,19 @@ const generatePages = (page: number, totalPages: number) => {
 };
 
 export const usePagination = ({
-  currentPage = 1,
+  page = 1,
   totalPages = 1,
 }: Props): FunctionReturn => {
-  const pages = generatePages(Number(currentPage), Number(totalPages));
+  const pages = generatePages(Number(page), Number(totalPages));
+  const isCurrentPage = (n: number) => {
+    if (Number(page) === 0) {
+      return n === Number(page) + 1;
+    } else {
+      return n === Number(page);
+    }
+  };
   return {
-    currentPage,
+    isCurrentPage,
     avaiablePages: pages,
   };
 };
