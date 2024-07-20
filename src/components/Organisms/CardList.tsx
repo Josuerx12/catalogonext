@@ -1,6 +1,6 @@
 "use client";
 
-import { GetItemPayload, getItems } from "@/services/item-service";
+import { getItems, GetItemsPayload } from "@/services/item-service";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
@@ -8,8 +8,9 @@ import ItemCard from "../Molecules/ItemCard";
 import { usePagination } from "@/hooks/usePagination";
 import { L_ELLIPISIS, R_ELLIPISIS } from "@/constants/ellipisis";
 import Button from "../Atoms/Button";
+import CardSkeletonList from "./Skeletons/CardSkeletonList";
 
-const CardList = ({ items }: { items: GetItemPayload }) => {
+const CardList = ({ items }: { items: GetItemsPayload }) => {
   const params = useSearchParams();
 
   const pathname = usePathname();
@@ -29,17 +30,17 @@ const CardList = ({ items }: { items: GetItemPayload }) => {
     refetch();
   }, [currentPage, searchByName]);
 
-  const { avaiablePages, currentPage: currentPagePaginated } = usePagination({
-    currentPage: data?.currentPage,
+  const { avaiablePages, isCurrentPage } = usePagination({
+    page: data?.currentPage,
     totalPages: data?.totalPages,
   });
 
   if (isLoading) {
-    return <p>Carregando items...</p>;
+    return <CardSkeletonList />;
   }
 
   return isFetching ? (
-    <p> Carregando...</p>
+    <CardSkeletonList />
   ) : (
     <div className="flex flex-col gap-8 items-center">
       <div className="flex flex-wrap gap-4 justify-between flex-1 mx-auto">
@@ -64,11 +65,15 @@ const CardList = ({ items }: { items: GetItemPayload }) => {
           return (
             <Button
               onClick={() =>
-                router.push(`${pathname}?page=${page}&name=${searchByName}`)
+                router.push(
+                  `${pathname}?page=${page}&name=${
+                    searchByName ? searchByName : ""
+                  }`
+                )
               }
               style={{ width: "2.4rem", height: "2.4rem" }}
-              disabled={page === currentPagePaginated}
-              variant="neutral"
+              disabled={isCurrentPage(page)}
+              variant={!isCurrentPage(page) ? "neutral" : "primary"}
               key={page}
             >
               {page}
