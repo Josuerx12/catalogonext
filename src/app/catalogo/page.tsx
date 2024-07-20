@@ -1,7 +1,13 @@
 import SearchItemForm from "@/components/Molecules/SearchItemForm";
 import CardList from "@/components/Organisms/CardList";
 import { getItems } from "@/services/item-service";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Catalogo JC",
+  description: "Catalogo JC",
+};
 
 const CatalogoPage = async ({ searchParams }: { searchParams: any }) => {
   const { name, page = 1 } = searchParams;
