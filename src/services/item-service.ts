@@ -7,7 +7,7 @@ type GetItemsProps = {
   page?: string;
 };
 
-export type GetItemPayload = {
+export type GetItemsPayload = {
   totalPages: number;
   currentPage: number;
   products: IItem[];
@@ -17,23 +17,30 @@ export const getItems = async ({
   limit,
   name,
   page,
-}: GetItemsProps): Promise<GetItemPayload> => {
+}: GetItemsProps): Promise<GetItemsPayload> => {
   try {
-    try {
-      const res = await api.get("/products", {
-        params: {
-          limit: limit ? limit : undefined,
-          name: name ? name : undefined,
-          page: page ? page : undefined,
-        },
-      });
-      const data = await res.data.payload;
-      return data;
-    } catch (error: any) {
-      console.log(error);
-      throw error.response.data;
-    }
+    const res = await api.get("/products", {
+      params: {
+        limit: limit ? limit : undefined,
+        name: name ? name : undefined,
+        page: page ? page : undefined,
+      },
+    });
+    const data = await res.data.payload;
+    return data;
   } catch (error: any) {
+    console.log(error);
+    throw error.response.data;
+  }
+};
+
+export const getItem = async (id: string): Promise<IItem> => {
+  try {
+    const res = await api.get("/products/" + id);
+    const data = await res.data.payload.product;
+    return data;
+  } catch (error: any) {
+    console.log(error);
     throw error.response.data;
   }
 };
