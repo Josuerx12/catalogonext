@@ -11,17 +11,17 @@ const SearchItemForm = () => {
   const searchByName = searchParams.get("name");
   const [name, setName] = useState("");
 
-  const debouncedName = useDebounce(name, 500);
+  const debouncedName = useDebounce(name);
 
   useEffect(() => {
     const params = new URLSearchParams();
 
     if (debouncedName) {
       params.set("name", debouncedName);
+      router.push(`${pathname}?${params}`);
     } else {
       params.set("name", "");
     }
-    router.push(`${pathname}?${params}`);
   }, [debouncedName]);
 
   return (
