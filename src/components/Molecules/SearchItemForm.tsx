@@ -18,10 +18,10 @@ const SearchItemForm = () => {
 
     if (debouncedName) {
       params.set("name", debouncedName);
-      router.push(`${pathname}?${params}`);
     } else {
       params.set("name", "");
     }
+    router.replace(`${pathname}?${params}`);
   }, [debouncedName]);
 
   return (

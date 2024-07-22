@@ -37,7 +37,7 @@ const Slider = ({ imgs }: { imgs: { photo: string; _id: string }[] }) => {
         {imgs.map((img) => (
           <Image
             key={img._id}
-            className="w-full max-w-screen-lg object-fill aspect-video rounded-md"
+            className="w-full max-w-screen-lg object-scale-down aspect-video rounded-md"
             src={`https://catalogo-product-pic.s3.us-east-2.amazonaws.com/${img.photo}`}
             alt={img._id}
             width={1920}

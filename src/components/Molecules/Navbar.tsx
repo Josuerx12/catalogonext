@@ -1,9 +1,17 @@
 "use client";
 import { useAuth } from "@/contexts/auth-context";
-import { Home, LogIn, Menu, Store, UserPlus, X } from "lucide-react";
+import {
+  Home,
+  LogIn,
+  Menu,
+  MonitorCog,
+  Store,
+  UserPlus,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import Button from "../Atoms/Button";
+import UserBtn from "../Atoms/UserBtn";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +30,12 @@ const Navbar = () => {
             <Store size={15} />
             Catálogo
           </Link>
+          {user?.admin && (
+            <Link className="flex gap-2 items-center" href="/dashboard">
+              <MonitorCog size={15} />
+              Dashboard
+            </Link>
+          )}
 
           {!user ? (
             <div className="gap-4 flex ">
@@ -40,7 +54,7 @@ const Navbar = () => {
               </Link>
             </div>
           ) : (
-            <Button>{user.name}</Button>
+            <UserBtn user={user} />
           )}
         </nav>
         <button
@@ -92,7 +106,7 @@ const Navbar = () => {
               </Link>
             </>
           ) : (
-            <Button>{user.name}</Button>
+            <UserBtn user={user} />
           )}
         </div>
       </nav>

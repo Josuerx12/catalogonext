@@ -65,10 +65,11 @@ const CardList = ({ items }: { items: GetItemsPayload }) => {
           return (
             <Button
               onClick={() =>
-                router.push(
+                router.replace(
                   `${pathname}?page=${page}&name=${
                     searchByName ? searchByName : ""
-                  }`
+                  }`,
+                  { scroll: true }
                 )
               }
               style={{ width: "2.4rem", height: "2.4rem" }}
