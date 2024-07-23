@@ -13,7 +13,7 @@ type ModalProps = {
 const Modal = ({ title, children, isOpen, onClose }: ModalProps) => {
   return (
     <section
-      className={`fixed inset-0 m-2 flex flex-col items-center duration-300 justify-start mt-28  ${
+      className={`fixed inset-0 m-2 flex flex-col items-center duration-300 justify-start mt-10 md:mt-28  ${
         isOpen ? " opacity-100 z-50" : "opacity-0 -z-50"
       }`}
     >
