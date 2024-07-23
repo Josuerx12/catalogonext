@@ -16,7 +16,7 @@ const ItemCard = ({ item }: { item: IItem }) => {
         className="aspect-square  sm:max-w-[300px] w-full object-cover"
         src={
           "https://catalogo-product-pic.s3.us-east-2.amazonaws.com/" +
-          item.photos[0].photo
+          item.photos[0]?.photo
         }
         alt={item.name}
         width={1920}
