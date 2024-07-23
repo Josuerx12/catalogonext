@@ -1,13 +1,18 @@
 "use client";
 import { getItems, GetItemsPayload } from "@/services/item-service";
-import { useSearchParams } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import CardSkeletonList from "./Skeletons/CardSkeletonList";
 import ItemCardDashboard from "../Molecules/ItemCardDashboard";
 import Pagination from "./Pagination";
+import { useAuth } from "@/contexts/auth-context";
 
 const CardListDashboard = ({ items }: { items: GetItemsPayload }) => {
+  const { user } = useAuth();
+  if (!user?.admin) {
+    redirect("/catalogo");
+  }
   const params = useSearchParams();
 
   const currentPage = params.get("page") as string | undefined;

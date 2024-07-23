@@ -1,8 +1,5 @@
 import DashboardNav from "@/components/Molecules/DashboardNav";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Catalogo JC - ADMIN Dashboard",
