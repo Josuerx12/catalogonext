@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 const ItemCardDashboard = ({ product }: { product: IItem }) => {
   return (
-    <div className="border group relative flex flex-wrap sm:flex-nowrap p-4 hover:pt-10 duration-200 rounded-md w-full sm:w-96 gap-2">
+    <div className="border group relative flex flex-wrap sm:flex-nowrap p-4 md:hover:pt-10 duration-200 rounded-md w-full sm:w-96 gap-2">
       <Image
         src={
           "https://catalogo-product-pic.s3.us-east-2.amazonaws.com/" +
@@ -14,11 +14,11 @@ const ItemCardDashboard = ({ product }: { product: IItem }) => {
         }
         width={1920}
         height={1080}
-        className="sm:w-32 w-full sm:h-32 aspect-square mx-auto object-cover"
+        className="md:w-32 w-full md:h-32 aspect-square mx-auto object-cover"
         alt={"Foto do material" + product.name}
       />
       <div className="flex flex-col gap-2">
-        <div className="sm:absolute sm:opacity-0 duration-300 ease-in-out sm:group-hover:opacity-100 flex justify-end gap-1 top-2 right-2">
+        <div className="md:absolute md:opacity-0 duration-300 ease-in-out md:group-hover:opacity-100 flex justify-end gap-1 top-2 right-2">
           <Button title={"Deletar produto: " + product.name} variant="danger">
             <Trash size={15} />
           </Button>
