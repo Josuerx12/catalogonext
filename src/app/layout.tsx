@@ -12,6 +12,25 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Catalogo JC",
   description: "Catalogo JC",
+  creator: "Josué Carvalho",
+  category: "Catalogo de Produtos",
+  keywords: [
+    "nextjs",
+    "react",
+    "typescript",
+    "react-query",
+    "josue",
+    "carvalho",
+    "jc solucoes",
+    "JC Soluções",
+    "Josué Carvalho",
+    "Catalogo JC",
+    "Estoque FST",
+    "FST Serviços",
+  ],
+  applicationName: "Catalogo JC",
+  authors: [{ name: "Josué Carvalho", url: "https://josuecarvalho.cloud" }],
+  publisher: "Vercel",
 };
 
 export default function RootLayout({
