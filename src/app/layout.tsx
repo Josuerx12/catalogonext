@@ -4,6 +4,8 @@ import "./globals.css";
 import { AuthContextProvider } from "@/contexts/auth-context";
 import ReactQueryProvider from "@/providers/react-query-provider";
 import Navbar from "@/components/Molecules/Navbar";
+import ReactToastProvider from "@/providers/react-toastfy-provider";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +24,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthContextProvider>
           <ReactQueryProvider>
-            <Navbar />
-            {children}
+            <ReactToastProvider>
+              <Navbar />
+              {children}
+            </ReactToastProvider>
           </ReactQueryProvider>
         </AuthContextProvider>
       </body>
