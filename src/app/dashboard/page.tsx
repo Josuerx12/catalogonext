@@ -1,7 +1,11 @@
 import React from "react";
 
 const DashboardHome = () => {
-  return <div>Dashboard Home Page</div>;
+  return (
+    <main className="w-full flex justify-center">
+      <p>Pagina inicial da dashboard</p>
+    </main>
+  );
 };
 
 export default DashboardHome;
