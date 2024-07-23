@@ -1,5 +1,3 @@
-import Button from "@/components/Atoms/Button";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
