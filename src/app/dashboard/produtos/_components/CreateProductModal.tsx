@@ -119,7 +119,7 @@ const CreateProductModal = ({ onClose, isOpen }: Props) => {
           <Button disabled={isLoading} variant="primary">
             {isLoading ? (
               <div className="flex gap-2">
-                <span>Carregando</span> <RefreshCcw className="animate-spin" />
+                <span>Salvando</span> <RefreshCcw className="animate-spin" />
               </div>
             ) : (
               <div className="flex gap-2">
