@@ -9,8 +9,12 @@ export const metadata: Metadata = {
   description: "Catalogo JC",
 };
 
-const CatalogoPage = async ({ searchParams }: { searchParams: any }) => {
-  const { name, page = 1 } = searchParams;
+const CatalogoPage = async ({
+  searchParams,
+}: {
+  searchParams: { name: string; page: string };
+}) => {
+  const { name, page = "1" } = searchParams;
 
   const items = await getItems({ name, page, limit: "20" });
 
