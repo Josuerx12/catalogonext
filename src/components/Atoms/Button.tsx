@@ -8,7 +8,7 @@ const Button = (props: ButtonProps) => {
   return (
     <button
       {...props}
-      className={`hover:bg-opacity-80 disabled:opacity-80 duration-300 px-2 py-2 shadow  rounded ${
+      className={`hover:bg-opacity-80 group disabled:opacity-80 duration-300 px-2 py-2 shadow  rounded ${
         props.variant === "primary"
           ? "bg-blue-600 text-white"
           : props.variant === "danger"
