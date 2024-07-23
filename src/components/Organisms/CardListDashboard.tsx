@@ -13,7 +13,7 @@ const CardListDashboard = ({ items }: { items: GetItemsPayload }) => {
   const currentPage = params.get("page") as string | undefined;
   const searchByName = params.get("name") as string | undefined;
 
-  const { data, isLoading, refetch, isRefetching } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     ["items"],
     () => getItems({ page: currentPage, name: searchByName, limit: "20" }),
     { initialData: items }
@@ -26,9 +26,7 @@ const CardListDashboard = ({ items }: { items: GetItemsPayload }) => {
   if (isLoading) {
     return <CardSkeletonList />;
   }
-  return isRefetching ? (
-    <CardSkeletonList />
-  ) : (
+  return (
     <section className="flex flex-col gap-8">
       <div className="flex flex-wrap justify-between gap-4">
         {data?.products.map((product) => (

@@ -25,8 +25,9 @@ const SearchItemForm = () => {
   }, [debouncedName]);
 
   return (
-    <form className="flex flex-col items-end">
+    <form className="flex flex-col items-end w-full">
       <Input
+        style={{ flexGrow: "1", maxWidth: "100%" }}
         name="name"
         type="text"
         defaultValue={searchByName ? searchByName : ""}

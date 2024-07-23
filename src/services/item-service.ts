@@ -56,3 +56,46 @@ export const addItem = async (credentials: FormData): Promise<string> => {
     throw error.response.data;
   }
 };
+
+export const editItem = async ({
+  credentials,
+  id,
+}: {
+  id: string;
+  credentials: FormData;
+}): Promise<string> => {
+  try {
+    await api.patch(`/products/${id}`, credentials, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return "Produto editado com sucesso!";
+  } catch (error: any) {
+    console.log(error);
+    throw error.response.data;
+  }
+};
+
+export const deletePhotoOfItem = async ({
+  photoId,
+  productId,
+}: {
+  photoId: string;
+  productId: string;
+}) => {
+  try {
+    await api.delete(`/products/${productId}/${photoId}`);
+    return "Foto do produto ID:" + productId + ", deletada com sucesso!";
+  } catch (error: any) {
+    console.log(error);
+    throw error.response.data;
+  }
+};
+export const deleteItem = async (id: string): Promise<string> => {
+  try {
+    await api.delete(`/products/${id}`);
+    return `Produto ID:${id}, deletado com sucesso!`;
+  } catch (error: any) {
+    console.log(error);
+    throw error.response.data;
+  }
+};
