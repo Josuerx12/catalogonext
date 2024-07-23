@@ -44,3 +44,15 @@ export const getItem = async (id: string): Promise<IItem> => {
     throw error.response.data;
   }
 };
+
+export const addItem = async (credentials: FormData): Promise<string> => {
+  try {
+    await api.post("/products/new", credentials, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return "Produto cadastrado com sucesso!";
+  } catch (error: any) {
+    console.log(error);
+    throw error.response.data;
+  }
+};
