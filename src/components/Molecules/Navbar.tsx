@@ -86,6 +86,12 @@ const Navbar = () => {
             <Store size={15} />
             Catálogo
           </Link>
+          {user?.admin && (
+            <Link className="flex gap-2 items-center" href="/dashboard">
+              <MonitorCog size={15} />
+              Dashboard
+            </Link>
+          )}
 
           {!user ? (
             <>
