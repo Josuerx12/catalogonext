@@ -64,7 +64,7 @@ const EditProductModal = ({ onClose, isOpen, item }: Props) => {
             <CardToDeletePhoto
               photo={photo}
               productId={item._id}
-              key={item._id}
+              key={photo._id}
             />
           ))
         ) : (
@@ -122,6 +122,7 @@ const EditProductModal = ({ onClose, isOpen, item }: Props) => {
           type="file"
           multiple={true}
           accept="image/*"
+          defaultValue={undefined}
         />
 
         {isError && (
