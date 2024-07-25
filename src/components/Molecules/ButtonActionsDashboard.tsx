@@ -18,7 +18,7 @@ const ButtonActionsDashboard = () => {
       <div className="flex gap-2 flex-wrap md:flex-nowrap ml-auto py-4 w-full">
         <SearchItemForm />
         <Button
-          onClick={() => query.refetchQueries("items")}
+          onClick={() => query.resetQueries("items")}
           title="Atualizar lista de produtos"
         >
           <RefreshCcw
