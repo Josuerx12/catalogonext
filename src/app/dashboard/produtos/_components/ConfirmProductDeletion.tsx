@@ -36,7 +36,7 @@ const ConfirmProductDeletion = ({ isOpen, item, onClose }: Props) => {
           src={`https://catalogo-product-pic.s3.us-east-2.amazonaws.com/${item?.photos[0]?.photo}`}
           width={1920}
           height={1080}
-          className="aspect-square w-96 h-96 object-cover"
+          className="aspect-square w-96 h-96 object-cover rounded-md"
           alt={"Foto do produto" + item.name}
         />
         <p>{item.name}</p>

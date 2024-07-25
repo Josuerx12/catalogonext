@@ -1,6 +1,5 @@
 import { IItem } from "@/interfaces/items";
 import React from "react";
-import Image from "next/image";
 import GoBackButton from "../Atoms/GoBackButton";
 import Slider from "./Slider";
 

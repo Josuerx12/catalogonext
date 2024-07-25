@@ -24,8 +24,8 @@ const CardToDeletePhoto = ({
     <div className="flex flex-col gap-3 border p-3 rounded w-fit">
       <Image
         className="rounded shadow bg-neutral-400 w-36 h-36 aspect-square object-cover"
-        width={1920}
-        height={1080}
+        width={400}
+        height={400}
         src={`https://catalogo-product-pic.s3.us-east-2.amazonaws.com/${photo.photo}`}
         alt={photo.photo}
       />
