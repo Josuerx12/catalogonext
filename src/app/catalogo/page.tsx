@@ -19,7 +19,7 @@ const CatalogoPage = async ({
   const items = await getItems({ name, page, limit: "20" });
 
   return (
-    <div className="flex gap-4 p-2 flex-col max-w-screen-2xl mx-auto">
+    <div className="flex gap-4 p-2 flex-col w-11/12 mx-auto">
       <h3 className="text-center text-2xl font-semibold capitalize pt-6">
         Items disponíveis em estoque
       </h3>

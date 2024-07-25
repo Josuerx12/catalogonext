@@ -9,6 +9,10 @@ const DashboardHome = () => {
   if (!user?.admin) {
     redirect("/catalogo");
   }
+
+  if (user.admin) {
+    redirect("/dashboard/produtos");
+  }
   return (
     <main className="w-full flex justify-center">
       <p>Pagina inicial da dashboard</p>
