@@ -4,9 +4,9 @@ import { redirect, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import CardSkeletonList from "./Skeletons/CardSkeletonList";
-import ItemCardDashboard from "../Molecules/ItemCardDashboard";
 import Pagination from "./Pagination";
 import { useAuth } from "@/contexts/auth-context";
+import ItemCard from "../Molecules/ItemCard";
 
 const CardListDashboard = ({ items }: { items: GetItemsPayload }) => {
   const { user } = useAuth();
@@ -18,7 +18,7 @@ const CardListDashboard = ({ items }: { items: GetItemsPayload }) => {
   const currentPage = params.get("page") as string | undefined;
   const searchByName = params.get("name") as string | undefined;
 
-  const { data, isLoading, refetch } = useQuery(
+  const { data, isLoading, refetch, isFetching } = useQuery(
     ["items"],
     () => getItems({ page: currentPage, name: searchByName, limit: "20" }),
     { initialData: items }
@@ -35,7 +35,7 @@ const CardListDashboard = ({ items }: { items: GetItemsPayload }) => {
     <section className="flex flex-col gap-8">
       <div className="flex flex-wrap justify-between gap-4">
         {data?.products.map((product) => (
-          <ItemCardDashboard product={product} key={product._id} />
+          <ItemCard product={product} key={product._id} />
         ))}
       </div>
       <div className="flex justify-center gap-2">
