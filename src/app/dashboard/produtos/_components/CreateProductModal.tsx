@@ -17,6 +17,9 @@ const avaiableUnits = ["UN", "KG", "TON", "M"];
 
 const CreateProductModal = ({ onClose, isOpen }: Props) => {
   const query = useQueryClient();
+
+  const { register, handleSubmit, reset: resetForm } = useForm();
+
   const { mutateAsync, isLoading, isError, reset } = useMutation(
     ["addProduct"],
     addItem,
@@ -26,6 +29,7 @@ const CreateProductModal = ({ onClose, isOpen }: Props) => {
           toast.success(message),
           onClose(),
           query.invalidateQueries("items"),
+          resetForm(),
         ]),
       onError: () => {
         toast.error(
@@ -35,11 +39,21 @@ const CreateProductModal = ({ onClose, isOpen }: Props) => {
     }
   );
 
-  async function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const credentials = new FormData(e.currentTarget);
+  async function onSubmit(data: any) {
+    const formData = new FormData();
 
-    await mutateAsync(credentials);
+    if (data.name) formData.append("name", data.name);
+    if (data.category) formData.append("category", data.category);
+    if (data.photos) {
+      for (let i = 0; i < data.photos.length; i++) {
+        formData.append("product-pics", data.photos[i]);
+      }
+    }
+    if (data.stock) formData.append("stock", data.stock);
+    if (data.unit) formData.append("unit", data.unit);
+    if (data.description) formData.append("description", data.description);
+
+    await mutateAsync(formData);
   }
 
   return (
@@ -55,32 +69,32 @@ const CreateProductModal = ({ onClose, isOpen }: Props) => {
         Preencha o formulario abaixo!
       </h4>
       <form
-        onSubmit={onSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col  items-center gap-4 py-2"
       >
         <Input
           style={{ maxWidth: "100%" }}
           placeholder="Nome do produto"
-          name="name"
+          {...register("name")}
           type="text"
         />
         <Input
           style={{ maxWidth: "100%" }}
           placeholder="Categoria"
-          name="category"
+          {...register("category")}
           type="text"
         />
         <Input
           type="number"
           style={{ maxWidth: "100%" }}
           placeholder="Quatidade"
-          name="stock"
+          {...register("stock")}
         />
         <select
           className="border-none bg-neutral-200 text-black rounded outline-none block w-full p-2"
-          name="unit"
+          {...register("unit")}
         >
-          <option>Selecione uma unidade de medida</option>
+          <option value="">Selecione uma unidade de medida</option>
           {avaiableUnits.map((unit) => (
             <option key={unit} value={unit}>
               {unit}
@@ -89,17 +103,18 @@ const CreateProductModal = ({ onClose, isOpen }: Props) => {
         </select>
 
         <textarea
-          name="description"
+          {...register("description")}
           className="border-none bg-neutral-200 placeholder:text-black text-black rounded outline-none block w-full h-32 p-2"
           placeholder="Descrição do produto"
         />
 
         <input
           className="border-none bg-neutral-200 placeholder:text-black text-black rounded outline-none block w-full p-2"
-          name="product-pics"
+          {...register("photos")}
           type="file"
           multiple={true}
           accept="image/*"
+          defaultValue={undefined}
         />
 
         {isError && (
