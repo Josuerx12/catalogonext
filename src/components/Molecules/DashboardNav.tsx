@@ -9,7 +9,7 @@ const DashboardNav = () => {
   return (
     <nav>
       <ul className="flex gap-2 justify-center my-3">
-        <li>
+        {/* <li>
           <Link
             href={"/dashboard"}
             className={`font-semibold ${
@@ -18,7 +18,7 @@ const DashboardNav = () => {
           >
             Inicio
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link
             className={`font-semibold ${
