@@ -25,18 +25,16 @@ const LoginPage = () => {
     redirect("/");
   }
 
+  const { register, handleSubmit } = useForm<TLoginCredentials>();
+
   const { mutateAsync, isLoading, error } = useMutation<
     any,
     MutationError,
-    FormData
+    TLoginCredentials
   >(["login"], login);
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-
-    await mutateAsync(formData);
+  async function onSubmit(data: TLoginCredentials) {
+    await mutateAsync(data);
   }
 
   return (
@@ -46,10 +44,15 @@ const LoginPage = () => {
       </h2>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-2 flex-1 mx-auto "
       >
-        <Input placeholder="E-mail" type="email" required name="email" />
+        <Input
+          placeholder="E-mail"
+          type="email"
+          required
+          {...register("email")}
+        />
         {error?.email && (
           <p className="text-red-500">
             <span className="text-red-800 font-semibold">Error: </span>{" "}
@@ -59,7 +62,7 @@ const LoginPage = () => {
         <InputPassword
           placeholder="Informe sua senha."
           required
-          name="password"
+          {...register("password")}
         />
         {error?.password && (
           <p className="text-red-500">
