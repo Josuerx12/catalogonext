@@ -17,7 +17,7 @@ import Cookies from "js-cookie";
 
 type AuthContextProps = {
   user?: IUser;
-  login: (credentials: FormData) => Promise<void>;
+  login: (credentials: TLoginCredentials) => Promise<void>;
   register: (credentials: TRegisterCredentials) => Promise<void>;
   getUser: () => Promise<void>;
 };
@@ -51,7 +51,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const login = async (credentials: FormData) => {
+  const login = async (credentials: TLoginCredentials) => {
     try {
       const res = await api.post("/auth/login", credentials);
       const token = res.data.payload.token;
