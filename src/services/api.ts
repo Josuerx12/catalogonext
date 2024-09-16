@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://catalogofst.josuecarvalho.cloud/",
+  baseURL: "https://catalogofst.jcdev.com.br/",
 });
